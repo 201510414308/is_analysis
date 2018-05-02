@@ -1,0 +1,28 @@
+@startuml
+    actor 图书管理员
+    participant 读者
+    participant 资源项
+    participant 馆藏资源品种
+    participant 借书记录
+
+    图书管理员 -> 读者:验证读者
+    activate 读者
+    loop
+    图书管理员 -> 读者:读取读者限额
+    activate 读者
+    图书管理员 -> 资源项:获取资源项
+    activate 资源项
+    资源项 -> 馆藏资源品种:查找资源品种
+    activate 馆藏资源品种
+    图书管理员 ->借书记录:创建借书记录
+    activate 借书记录
+    图书管理员 ->资源项:借出资源
+    activate 资源项
+    资源项 ->馆藏资源品种:减少库存
+    activate 馆藏资源品种
+    图书管理员 ->读者:减少可用限额
+    activate 读者
+    end
+    图书管理员->借书记录:打印借书清单
+    activate 借书记录
+    @enduml

@@ -1,0 +1,26 @@
+@startuml
+    skinparam sequenceArrowThickness 3
+    skinparam roundcorner 30
+    skinparam maxmessagesize 80
+    skinparam sequenceParticipant underline
+    hide footbox
+
+    actor 系统管理员 as root
+    actor 图书管理员 as admin
+    actor 读者 as user
+
+    activate root
+    root -> admin:管理图书管理员账户
+    root -> user:管理读者账号
+    deactivate root
+
+    activate admin
+    admin -> admin:校验账户信息
+    admin -> root:反馈账户信息
+    deactivate admin
+
+    activate user
+    user -> user:校验账户信息
+    user -> root:反馈账户信息
+    deactivate user
+    @enduml
